@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura AI Studio - Agence d'Automation & Conseil IA à Abidjan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B0F19',
+                            card: '#111827',
+                            emerald: '#10B981',
+                            cyan: '#06B6D4',
+                            violet: '#8B5CF6',
+                            accent: '#059669'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0B0F19;
+            color: #F3F4F6;
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card-hover {
+            transition: all 0.3s ease;
+        }
+        .glass-card-hover:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.15);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #10B981 0%, #06B6D4 50%, #8B5CF6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-gradient-glow {
+            background: radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.15) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 80%);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1F2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #10B981;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden antialiased bg-brand-dark text-slate-100">
+
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-slate-800/60 bg-brand-dark/80 backdrop-blur-md" id="navbar">
+        <div class="container px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="flex items-center justify-center w-10 h-10 transition-transform duration-300 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 group-hover:scale-105">
+                        <i data-lucide="bot" class="w-6 h-6 text-slate-950"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-white">AURA <span class="text-emerald-400">AI</span></span>
+                        <span class="block text-[10px] font-medium tracking-widest text-slate-400 uppercase">Abidjan • Côte d'Ivoire</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden space-x-8 md:flex">
+                    <a href="#services" class="text-sm font-medium text-slate-300 transition-colors hover:text-emerald-400">Services</a>
+                    <a href="#calculator" class="text-sm font-medium text-slate-300 transition-colors hover:text-emerald-400">Calculateur ROI</a>
+                    <a href="#demo" class="text-sm font-medium text-slate-300 transition-colors hover:text-emerald-400">Démo Interactive</a>
+                    <a href="#cases" class="text-sm font-medium text-slate-300 transition-colors hover:text-emerald-400">Cas d'Usage</a>
+                    <a href="#why-us" class="text-sm font-medium text-slate-300 transition-colors hover:text-emerald-400">Pourquoi Nous</a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#contact" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-slate-950 transition-all duration-300 rounded-xl bg-emerald-400 hover:bg-emerald-300 hover:shadow-lg hover:shadow-emerald-500/20 active:scale-95">
+                        <span>Réserver une Audit IA</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="p-2 text-slate-400 rounded-lg md:hidden hover:text-white hover:bg-slate-800 focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden border-b md:hidden border-slate-800 bg-brand-card/95 backdrop-blur-xl">
+            <div class="px-4 pt-2 pb-6 space-y-3">
+                <a href="#services" class="block px-3 py-2 text-base font-medium rounded-md text-slate-300 hover:text-emerald-400 hover:bg-slate-800/50">Services</a>
+                <a href="#calculator" class="block px-3 py-2 text-base font-medium rounded-md text-slate-300 hover:text-emerald-400 hover:bg-slate-800/50">Calculateur ROI</a>
+                <a href="#demo" class="block px-3 py-2 text-base font-medium rounded-md text-slate-300 hover:text-emerald-400 hover:bg-slate-800/50">Démo Interactive</a>
+                <a href="#cases" class="block px-3 py-2 text-base font-medium rounded-md text-slate-300 hover:text-emerald-400 hover:bg-slate-800/50">Cas d'Usage</a>
+                <a href="#why-us" class="block px-3 py-2 text-base font-medium rounded-md text-slate-300 hover:text-emerald-400 hover:bg-slate-800/50">Pourquoi Nous</a>
+                <a href="#contact" class="block w-full text-center px-4 py-3 mt-4 text-base font-semibold text-slate-950 rounded-xl bg-emerald-400 hover:bg-emerald-300">
+                    Réserver une Consultation
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative pt-32 pb-20 overflow-hidden md:pt-40 md:pb-32 bg-gradient-glow">
+        <!-- Background Ambient Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[350px] h-[350px] bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="container px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center">
+                
+                <!-- Location Badge -->
+                <div class="inline-flex items-center px-4 py-2 mb-8 space-x-2 border rounded-full glass-card border-emerald-500/30">
+                    <span class="flex w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-xs font-semibold tracking-wide uppercase text-emerald-300">
+                        Première Agence d'Automation IA à Abidjan 🇨🇮
+                    </span>
+                </div>
+
+                <!-- Main Headline -->
+                <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl leading-[1.1]">
+                    Transformez Votre Entreprise avec l'
+                    <span class="text-gradient">Intelligence Artificielle</span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="max-w-2xl mx-auto mt-6 text-lg text-slate-300 sm:text-xl leading-relaxed">
+                    Nous aidons les PME, e-commerces, agences immobilières et cabinets à Abidjan à automatiser leur service client WhatsApp, rechercher dans leurs documents (RAG) et réduire leurs coûts opérationnels jusqu'à 70%.
+                </p>
+
+                <!-- CTA Group -->
+                <div class="flex flex-col items-center justify-center gap-4 mt-10 sm:flex-row">
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 text-base font-bold text-slate-950 transition-all duration-300 rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 hover:shadow-xl hover:shadow-emerald-500/25 active:scale-95 flex items-center justify-center space-x-2">
+                        <span>Réserver un Audit Gratuit</span>
+                        <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#demo" class="w-full sm:w-auto px-8 py-4 text-base font-semibold transition-all duration-300 border text-slate-200 rounded-xl glass-card border-slate-700 hover:border-slate-500 hover:bg-slate-800/50 flex items-center justify-center space-x-2">
+                        <i data-lucide="play-circle" class="w-5 h-5 text-emerald-400"></i>
+                        <span>Tester l'Assistant IA</span>
+                    </a>
+                </div>
+
+                <!-- Key Metrics Bar -->
+                <div class="grid grid-cols-2 gap-4 mt-16 md:grid-cols-4 sm:gap-6">
+                    <div class="p-4 border rounded-2xl glass-card border-slate-800/80">
+                        <div class="text-2xl font-black text-white sm:text-3xl text-emerald-400">+70%</div>
+                        <div class="mt-1 text-xs font-medium text-slate-400">Gain de temps équipe</div>
+                    </div>
+                    <div class="p-4 border rounded-2xl glass-card border-slate-800/80">
+                        <div class="text-2xl font-black text-white sm:text-3xl text-cyan-400">24/7</div>
+                        <div class="mt-1 text-xs font-medium text-slate-400">Réponse WhatsApp instantanée</div>
+                    </div>
+                    <div class="p-4 border rounded-2xl glass-card border-slate-800/80">
+                        <div class="text-2xl font-black text-white sm:text-3xl text-violet-400">&lt; 3 Sec</div>
+                        <div class="mt-1 text-xs font-medium text-slate-400">Recherche documentaire</div>
+                    </div>
+                    <div class="p-4 border rounded-2xl glass-card border-slate-800/80">
+                        <div class="text-2xl font-black text-white sm:text-3xl text-emerald-400">100%</div>
+                        <div class="mt-1 text-xs font-medium text-slate-400">Adapté au marché ivoirien</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 border-t border-slate-800/60 bg-brand-dark/50">
+        <div class="container px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-emerald-400 uppercase">Nos Solutions IA Sur-Mesure</h2>
+                <p class="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
+                    Des technologies avancées adaptées aux réalités des entreprises d'Abidjan
+                </p>
+                <p class="mt-4 text-slate-400 text-base">
+                    Nous combinons l'Intelligence Artificielle Générative, le RAG et l'automatisation pour résoudre vos goulets d'étranglement.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+                
+                <!-- Service 1: WhatsApp Chatbots -->
+                <div class="p-6 rounded-2xl glass-card glass-card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 mb-6 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                            <i data-lucide="message-square-code" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Agents IA WhatsApp</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-4">
+                            Gérez les commandes, devis et questions fréquentes sur WhatsApp Business en continu sans intervention humaine.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs text-slate-300 border-t border-slate-800 pt-4 mt-2">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mr-2"></i> Intégration WhatsApp Business</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mr-2"></i> Qualification des leads 24/7</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mr-2"></i> Synchro CRM & Wave/Orange Money</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2: RAG / Enterprise Search -->
+                <div class="p-6 rounded-2xl glass-card glass-card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 mb-6 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                            <i data-lucide="database-zap" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Recherche RAG & Documentaire</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-4">
+                            Interrogez vos centaines de contrats, procédures, lois ou catalogues financiers en langage naturel en 2 secondes.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs text-slate-300 border-t border-slate-800 pt-4 mt-2">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-cyan-400 mr-2"></i> Confidentialité des données 100%</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-cyan-400 mr-2"></i> Analyse PDF, Excel, Word & Scans</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-cyan-400 mr-2"></i> Citations exactes des sources</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3: Workflow Automation -->
+                <div class="p-6 rounded-2xl glass-card glass-card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 mb-6 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400">
+                            <i data-lucide="workflow" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Automatisation de Processus</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-4">
+                            Connectez vos emails, factures, formulaires et bases de données pour éliminer les saisies manuelles répétitives.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs text-slate-300 border-t border-slate-800 pt-4 mt-2">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-violet-400 mr-2"></i> Workflows Make & n8n sur-mesure</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-violet-400 mr-2"></i> Extraction automatique de factures</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-violet-400 mr-2"></i> Alertes & rapports automatiques</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4: AI Consulting & Audit -->
+                <div class="p-6 rounded-2xl glass-card glass-card-hover flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 mb-6 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                            <i data-lucide="compass" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Conseil & Strategie IA</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-4">
+                            Accompagnement stratégique pour identifier les opportunités IA à fort retour sur investissement dans votre secteur.
+                        </p>
+                    </div>
+                    <ul class="space-y-2 text-xs text-slate-300 border-t border-slate-800 pt-4 mt-2">
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mr-2"></i> Audit des processus internes</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mr-2"></i> Formation de vos équipes</li>
+                        <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mr-2"></i> Feuille de route IA personnalisée</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="py-20 border-t border-slate-800/60 bg-gradient-to-b from-brand-dark to-slate-950">
+        <div class="container px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Information Side -->
+                <div class="lg:col-span-5">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold mb-4">
+                        <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
+                        <span>Simulateur d'Économies</span>
+                    </div>
+                    <h2 class="text-3xl font-extrabold text-white sm:text-4xl leading-tight">
+                        Combien de temps et d'argent l'IA peut-elle vous faire économiser ?
+                    </h2>
+                    <p class="mt-4 text-slate-400 text-base leading-relaxed">
+                        En automatisant le traitement des messages WhatsApp et la recherche documentaire, vos équipes économisent des dizaines d'heures chaque mois.
+                    </p>
+                    
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="p-2 rounded-lg bg-slate-800 text-emerald-400">
+                                <i data-lucide="clock" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Réduction des tâches répétitives</h4>
+                                <p class="text-xs text-slate-400">Vos employés se concentrent sur les tâches à haute valeur ajoutée.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="p-2 rounded-lg bg-slate-800 text-emerald-400">
+                                <i data-lucide="trending-up" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Conversion de Ventes Maximisée</h4>
+                                <p class="text-xs text-slate-400">Un prospect WhatsApp qui reçoit une réponse en 5 secondes a 4x plus de chances d'acheter.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Widget Interactive Calculator -->
+                <div class="lg:col-span-7">
+                    <div class="p-6 sm:p-8 rounded-3xl glass-card border border-slate-700/60 shadow-2xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center justify-between">
+                            <span>Calculateur d'Impact Opérationnel</span>
+                            <span class="text-xs font-normal text-slate-400">Devise: FCFA (XOF)</span>
+                        </h3>
+
+                        <div class="space-y-6">
+                            
+                            <!-- Business Type Selector -->
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Secteur d'activité</label>
+                                <select id="calc-sector" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-emerald-400 transition-colors">
+                                    <option value="ecommerce">E-Commerce / Commerce Général</option>
+                                    <option value="immobilier">Immobilier & Promoteurs</option>
+                                    <option value="logistique">Logistique & Transport</option>
+                                    <option value="juridique">Cabinet Juridique / Comptable / Service B2B</option>
+                                </select>
+                            </div>
+
+                            <!-- Team Size Slider -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="text-xs font-semibold text-slate-300 uppercase">Taille de l'équipe (Employés)</label>
+                                    <span id="calc-team-val" class="text-sm font-bold text-emerald-400">5 personnes</span>
+                                </div>
+                                <input type="range" id="calc-team" min="1" max="50" value="5" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-400">
+                            </div>
+
+                            <!-- Hours spent on manual messages/search Slider -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="text-xs font-semibold text-slate-300 uppercase">Heures manuelles / employé / jour</label>
+                                    <span id="calc-hours-val" class="text-sm font-bold text-cyan-400">3 heures/jour</span>
+                                </div>
+                                <input type="range" id="calc-hours" min="1" max="8" value="3" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400">
+                            </div>
+
+                            <!-- Salary Slider -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="text-xs font-semibold text-slate-300 uppercase">Salaire moyen mensuel / employé</label>
+                                    <span id="calc-salary-val" class="text-sm font-bold text-emerald-400">250 000 FCFA</span>
+                                </div>
+                                <input type="range" id="calc-salary" min="100000" max="1000000" step="25000" value="250000" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-400">
+                            </div>
+
+                            <!-- Output Box -->
+                            <div class="p-6 rounded-2xl bg-slate-900/90 border border-emerald-500/30 grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                                <div>
+                                    <div class="text-xs text-slate-400 font-medium">Temps Économisé / Mois</div>
+                                    <div id="res-hours" class="text-2xl sm:text-3xl font-black text-emerald-400 mt-1">198 Heures</div>
+                                    <div class="text-[11px] text-slate-500 mt-1">~70% de productivité libérée</div>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-slate-400 font-medium">Économie Estimée / Mois</div>
+                                    <div id="res-money" class="text-2xl sm:text-3xl font-black text-cyan-400 mt-1">428 500 FCFA</div>
+                                    <div class="text-[11px] text-slate-500 mt-1">Retour sur investissement direct</div>
+                                </div>
+                            </div>
+
+                            <div class="text-center pt-2">
+                                <a href="#contact" class="inline-flex items-center text-xs font-bold text-emerald-400 hover:text-emerald-300 underline underline-offset-4">
+                                    Obtenir une étude personnalisée complète pour votre entreprise →
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="py-20 border-t border-slate-800/60 bg-brand-dark">
+        <div class="container px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold mb-4">
+                    <i data-lucide="play" class="w-3.5 h-3.5"></i>
+                    <span>Bac à Sable Interactif</span>
+                </div>
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                    Testez Notre Agent IA en Temps Réel
+                </h2>
+                <p class="mt-3 text-slate-400 text-sm sm:text-base">
+                    Simulez un échange WhatsApp pour "ImmoPlus Abidjan", une agence immobilière de Cocody configurée avec notre solution RAG + WhatsApp.
+                </p>
+            </div>
+
+            <!-- Chat Widget Window -->
+            <div class="max-w-3xl mx-auto rounded-3xl glass-card border border-slate-700/70 shadow-2xl overflow-hidden flex flex-col h-[580px]">
+                
+                <!-- Chat Header -->
+                <div class="px-6 py-4 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="relative">
+                            <div class="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 font-bold">
+                                <i data-lucide="bot" class="w-5 h-5"></i>
+                            </div>
+                            <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-slate-900 rounded-full"></span>
+                        </div>
+                        <div>
+                            <div class="text-sm font-bold text-white flex items-center space-x-2">
+                                <span>Aura Assistant (Demo Immo)</span>
+                                <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-mono">EN LIGNE</span>
+                            </div>
+                            <div class="text-xs text-slate-400">Simulateur WhatsApp Business • Abidjan</div>
+                        </div>
+                    </div>
+                    <button id="reset-chat-btn" class="text-xs text-slate-400 hover:text-white px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors flex items-center space-x-1">
+                        <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                        <span>Réinitialiser</span>
+                    </button>
+                </div>
+
+                <!-- Chat Body (Messages) -->
+                <div id="chat-messages" class="flex-1 p-6 overflow-y-auto space-y-4 bg-slate-950/40">
+                    
+                    <!-- Bot Initial Message -->
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-400 flex-shrink-0 mt-1">
+                            <i data-lucide="bot" class="w-4 h-4"></i>
+                        </div>
+                        <div class="bg-slate-800/90 text-slate-200 p-4 rounded-2xl rounded-tl-none border border-slate-700/50 max-w-[85%] text-sm leading-relaxed">
+                            Bonjour ! 🖐️ Je suis l'assistant IA de <strong>ImmoPlus Abidjan</strong>. 
+                            Je peux vous informer sur nos appartements disponibles à Cocody & Marcory, nos tarifs, ou réserver une visite. Comment puis-je vous aider ?
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Quick Prompt Suggestions -->
+                <div class="px-6 py-2 bg-slate-900/60 border-t border-slate-800/60 overflow-x-auto whitespace-nowrap space-x-2 flex items-center text-xs">
+                    <span class="text-slate-500 font-medium">Propositions :</span>
+                    <button class="quick-prompt px-3 py-1.5 rounded-full bg-slate-800 hover:bg-emerald-500/20 hover:text-emerald-300 text-slate-300 border border-slate-700 transition-all">
+                        Avez-vous des 3 pièces à Cocody Riviera ?
+                    </button>
+                    <button class="quick-prompt px-3 py-1.5 rounded-full bg-slate-800 hover:bg-emerald-500/20 hover:text-emerald-300 text-slate-300 border border-slate-700 transition-all">
+                        Quels sont les documents requis pour louer ?
+                    </button>
+                    <button class="quick-prompt px-3 py-1.5 rounded-full bg-slate-800 hover:bg-emerald-500/20 hover:text-emerald-300 text-slate-300 border border-slate-700 transition-all">
+                        Je souhaite réserver une visite demain
+                    </button>
+                </div>
+
+                <!-- Chat Input Form -->
+                <div class="p-4 bg-slate-900 border-t border-slate-800">
+                    <form id="chat-form" class="flex items-center space-x-2">
+                        <input type="text" id="chat-input" placeholder="Posez une question à l'assistant IA (ex: loyer moyen, réservation)..." class="flex-1 px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400 text-sm transition-colors">
+                        <button type="submit" class="px-5 py-3 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-sm transition-all flex items-center justify-center">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="cases" class="py-20 border-t border-slate-800/60 bg-brand-dark/50">
+        <div class="container px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-emerald-400 uppercase">Cas d'Usage Locaux (Abidjan & Afrique de l'Ouest)</h2>
+                <p class="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
+                    Des résultats concrets pour les leaders sectoriels
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Case Study 1: E-Commerce / Commerce -->
+                <div class="p-8 rounded-3xl glass-card border border-slate-800 relative">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                                E-Commerce & Vente
+                            </span>
+                            <h3 class="text-xl font-bold text-white mt-3">Boutique de Mode & Cosméceutique (Marcory)</h3>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-slate-800 text-emerald-400">
+                            <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                        <strong>Problème :</strong> Plus de 300 messages WhatsApp reçus par jour pour connaître les stocks, les prix et planifier les livraisons avec la chaîne logistique locale. L'équipe répondait avec 4 heures de retard.
+                    </p>
+                    <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 mb-6 space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Solution :</span>
+                            <span class="text-white font-semibold">Agent WhatsApp autonome connecté aux stocks</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Temps de réponse :</span>
+                            <span class="text-emerald-400 font-bold">Passé de 4h à 5 secondes</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Ventes WhatsApp :</span>
+                            <span class="text-emerald-400 font-bold">+38% le premier mois</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 2: Legal & Cabinet -->
+                <div class="p-8 rounded-3xl glass-card border border-slate-800 relative">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                                Cabinet Juridique & Audit
+                            </span>
+                            <h3 class="text-xl font-bold text-white mt-3">Cabinet de Conseil Droit des Affaires (Plateau)</h3>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-slate-800 text-cyan-400">
+                            <i data-lucide="scale" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                        <strong>Problème :</strong> Analyse manuelle de centaines de jurisprudences et de documents OHADA. Perte de temps considérable lors de la rédaction de contrats et audits réglementaires.
+                    </p>
+                    <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 mb-6 space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Solution :</span>
+                            <span class="text-white font-semibold">Moteur RAG sécurisé sur fonds documentaire privé</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Recherche juridique :</span>
+                            <span class="text-cyan-400 font-bold">80% plus rapide</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Sécurité :</span>
+                            <span class="text-cyan-400 font-bold">Données hébergées en environnement étanche</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 3: Immobilier -->
+                <div class="p-8 rounded-3xl glass-card border border-slate-800 relative">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-violet-500/10 text-violet-400 border border-violet-500/20">
+                                Immobilier & BTP
+                            </span>
+                            <h3 class="text-xl font-bold text-white mt-3">Promoteur Immobilier (Cocody Ambassades)</h3>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-slate-800 text-violet-400">
+                            <i data-lucide="building-2" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                        <strong>Problème :</strong> Gestion des demandes de visite pour des programmes neufs. Qualification difficile des acquéreurs potentiels et relances manuelles inefficaces.
+                    </p>
+                    <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 mb-6 space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Solution :</span>
+                            <span class="text-white font-semibold">Assistant IA de qualification & prise de RDV</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">RDV qualifiés :</span>
+                            <span class="text-violet-400 font-bold">x2,5 consultations physiques</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Disponibilité :</span>
+                            <span class="text-violet-400 font-bold">Prise de RDV automatique les soirs & WE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 4: Logistics -->
+                <div class="p-8 rounded-3xl glass-card border border-slate-800 relative">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                                Logistique & Express
+                            </span>
+                            <h3 class="text-xl font-bold text-white mt-3">Réseau de Livraison Urbaine (Abidjan Métropole)</h3>
+                        </div>
+                        <div class="p-3 rounded-2xl bg-slate-800 text-emerald-400">
+                            <i data-lucide="truck" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                        <strong>Problème :</strong> Suivi des colis en direct, demandes d'estimations de tarifs de livraison selon les communes (Yopougon, Treichville, Abobo, Cocody).
+                    </p>
+                    <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800 mb-6 space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Solution :</span>
+                            <span class="text-white font-semibold">Bot de calcul automatique de tarif & tracking</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Appels support :</span>
+                            <span class="text-emerald-400 font-bold">-65% au centre de relation client</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="py-20 border-t border-slate-800/60 bg-gradient-to-b from-brand-dark to-slate-950">
+        <div class="container px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-emerald-400 uppercase">Pourquoi Travailler Avec Aura AI</h2>
+                <p class="mt-3 text-3xl font-extrabold text-white sm:text-4xl">
+                    L'expertise IA internationale adaptée au marché ivoirien
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="p-8 rounded-3xl glass-card border border-slate-800 text-center">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                        <i data-lucide="map-pin" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Ancrage Local à Abidjan</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Nous comprenons la culture des affaires en Côte d'Ivoire, les habitudes d'utilisation de WhatsApp et les contraintes techniques régionales.
+                    </p>
+                </div>
+
+                <div class="p-8 rounded-3xl glass-card border border-slate-800 text-center">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                        <i data-lucide="shield-check" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Sécurité & Confidentialité</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Vos documents et données clients restent votre propriété exclusive. Nous respectons les exigences strictes de protection des données.
+                    </p>
+                </div>
+
+                <div class="p-8 rounded-3xl glass-card border border-slate-800 text-center">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400">
+                        <i data-lucide="zap" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Déploiement Rapide (14 Jours)</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Pas de projets interminables. Nous déployons vos prototypes fonctionnels et vos bots opérationnels en moins de 2 semaines.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 border-t border-slate-800/60 bg-brand-dark">
+        <div class="container px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                
+                <div class="p-8 sm:p-12 rounded-3xl glass-card border border-emerald-500/30 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <div class="text-center max-w-2xl mx-auto mb-10">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 uppercase tracking-widest">
+                            Consultation Provisoire Offerte
+                        </span>
+                        <h2 class="text-3xl font-extrabold text-white sm:text-4xl mt-4">
+                            Réservez Votre Audit IA Gratuit
+                        </h2>
+                        <p class="mt-3 text-slate-400 text-sm">
+                            Discutons de vos besoins pendant 30 minutes. Nous évaluerons ensemble les opportunités d'automatisation pour votre entreprise.
+                        </p>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <form id="booking-form" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Votre Nom & Prénom *</label>
+                                <input type="text" required placeholder="Ex: Jean-Marc Kouassi" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400 transition-colors text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Nom de l'Entreprise *</label>
+                                <input type="text" required placeholder="Ex: Ivoire Logistique SARL" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400 transition-colors text-sm">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Numéro Téléphone / WhatsApp *</label>
+                                <input type="tel" required placeholder="+225 07 00 00 00 00" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400 transition-colors text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Besoin Principal</label>
+                                <select class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-emerald-400 transition-colors text-sm">
+                                    <option>Agent WhatsApp / Service Client 24/7</option>
+                                    <option>Recherche Documentaire & RAG</option>
+                                    <option>Automatisation de Workflows</option>
+                                    <option>Conseil & Formation IA</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-2">Décrivez brièvement votre projet ou problème</label>
+                            <textarea rows="4" placeholder="Ex: Nous recevons trop de messages WhatsApp et nous voulons automatiser nos devis..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-400 transition-colors text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 font-bold text-base transition-all duration-300 shadow-lg shadow-emerald-500/20 active:scale-98 flex items-center justify-center space-x-2">
+                            <span>Demander une Consultation Gratuite</span>
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                        </button>
+
+                        <div id="form-success-msg" class="hidden p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-center text-sm font-semibold">
+                            ✅ Merci ! Votre demande a été enregistrée. Notre équipe à Abidjan vous recontactera sous 24h sur WhatsApp.
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-slate-800 bg-slate-950 text-slate-400 text-xs">
+        <div class="container px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                        <i data-lucide="bot" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="text-base font-extrabold text-white">AURA AI STUDIO</span>
+                        <span class="block text-[10px] text-slate-500">Agence Conseil & Automation IA • Abidjan, Côte d'Ivoire</span>
+                    </div>
+                </div>
+
+                <div class="flex space-x-6 text-slate-400">
+                    <a href="#services" class="hover:text-emerald-400 transition-colors">Services</a>
+                    <a href="#calculator" class="hover:text-emerald-400 transition-colors">Calculateur</a>
+                    <a href="#demo" class="hover:text-emerald-400 transition-colors">Démo Interactive</a>
+                    <a href="#contact" class="hover:text-emerald-400 transition-colors">Contact</a>
+                </div>
+
+                <div class="text-slate-500">
+                    &copy; 2026 Aura AI Studio. Tous droits réservés.
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on click link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 2. Interactive ROI Calculator Logic
+        const calcSector = document.getElementById('calc-sector');
+        const calcTeam = document.getElementById('calc-team');
+        const calcTeamVal = document.getElementById('calc-team-val');
+        const calcHours = document.getElementById('calc-hours');
+        const calcHoursVal = document.getElementById('calc-hours-val');
+        const calcSalary = document.getElementById('calc-salary');
+        const calcSalaryVal = document.getElementById('calc-salary-val');
+
+        const resHours = document.getElementById('res-hours');
+        const resMoney = document.getElementById('res-money');
+
+        function updateCalculator() {
+            const team = parseInt(calcTeam.value);
+            const hours = parseInt(calcHours.value);
+            const salary = parseInt(calcSalary.value);
+
+            // Dynamic Labels
+            calcTeamVal.textContent = `${team} personne${team > 1 ? 's' : ''}`;
+            calcHoursVal.textContent = `${hours} heure${hours > 1 ? 's' : ''}/jour`;
+            calcSalaryVal.textContent = `${salary.toLocaleString('fr-FR')} FCFA`;
+
+            // Calculation (70% automation rate)
+            const totalHoursMonthPerEmployee = hours * 22; // 22 working days
+            const savedHoursTotal = Math.round(team * totalHoursMonthPerEmployee * 0.7);
+
+            // Hourly wage estimation = salary / 176 hours
+            const hourlyRate = salary / 176;
+            const savedMoneyTotal = Math.round(savedHoursTotal * hourlyRate);
+
+            resHours.textContent = `${savedHoursTotal} Heures`;
+            resMoney.textContent = `${savedMoneyTotal.toLocaleString('fr-FR')} FCFA`;
+        }
+
+        [calcSector, calcTeam, calcHours, calcSalary].forEach(el => {
+            el.addEventListener('input', updateCalculator);
+        });
+        updateCalculator();
+
+        // 3. AI Chat Sandbox Demo Simulation Logic
+        const chatMessages = document.getElementById('chat-messages');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const resetChatBtn = document.getElementById('reset-chat-btn');
+        const quickPrompts = document.querySelectorAll('.quick-prompt');
+
+        const knowledgeBase = [
+            {
+                keywords: ['cocody', 'riviera', '3 pièces', '3 pieces', 'appartement'],
+                response: "Oui ! Nous avons actuellement un superbe <strong>3 pièces meublé à Cocody Riviera 3</strong> avec piscine, sécurité 24/7. Loyer : 650 000 FCFA/mois. Souhaitez-vous recevoir la fiche technique sur WhatsApp ?"
+            },
+            {
+                keywords: ['document', 'documents', 'condition', 'conditions', 'louer', 'dossier'],
+                response: "Pour réserver un logement à Abidjan chez ImmoPlus, les pièces requises sont : <br>1. Une pièce d'identité en cours de validité (CNI/Passeport)<br>2. Les 3 derniers bulletins de salaire<br>3. 2 mois de caution + 2 mois d'avance."
+            },
+            {
+                keywords: ['visite', 'visiter', 'demain', 'rendez-vous', 'rdv'],
+                response: "Parfait ! 📅 Je peux vous planifier une visite avec notre agent M. Diallo demain à 10h00 ou 15h00. Quelle heure vous convient le mieux ? Veuillez indiquer votre numéro WhatsApp."
+            },
+            {
+                keywords: ['prix', 'tarif', 'loyer', 'combien'],
+                response: "Nos loyers varient selon la commune : <br>• <strong>Cocody :</strong> 350 000 à 1 500 000 FCFA<br>• <strong>Marcory / Zone 4 :</strong> 500 000 à 2 000 000 FCFA<br>• <strong>Yopougon :</strong> 150 000 à 400 000 FCFA."
+            }
+        ];
+
+        function addMessage(text, isUser = false) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `flex items-start space-x-3 ${isUser ? 'justify-end' : ''}`;
+
+            if (isUser) {
+                msgDiv.innerHTML = `
+                    <div class="bg-emerald-500/20 text-emerald-100 p-4 rounded-2xl rounded-tr-none border border-emerald-500/30 max-w-[85%] text-sm leading-relaxed">
+                        ${text}
+                    </div>
+                `;
+            } else {
+                msgDiv.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-400 flex-shrink-0 mt-1">
+                        <i data-lucide="bot" class="w-4 h-4"></i>
+                    </div>
+                    <div class="bg-slate-800/90 text-slate-200 p-4 rounded-2xl rounded-tl-none border border-slate-700/50 max-w-[85%] text-sm leading-relaxed">
+                        ${text}
+                    </div>
+                `;
+            }
+
+            chatMessages.appendChild(msgDiv);
+            lucide.createIcons();
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function handleBotReply(userQuery) {
+            const cleanQuery = userQuery.toLowerCase();
+            let matchedReply = "Merci pour votre message ! En tant qu'IA de démonstration, je peux vous renseigner sur nos biens à Cocody, nos tarifs ou organiser une visite. N'hésitez pas à être plus précis !";
+
+            for (const item of knowledgeBase) {
+                if (item.keywords.some(kw => cleanQuery.includes(kw))) {
+                    matchedReply = item.response;
+                    break;
+                }
+            }
+
+            // Typing indicator effect
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'flex items-center space-x-2 text-slate-400 text-xs italic p-2';
+            typingDiv.id = 'typing-indicator';
+            typingDiv.innerHTML = `<span>L'assistant IA écrit...</span>`;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                const indicator = document.getElementById('typing-indicator');
+                if (indicator) indicator.remove();
+                addMessage(matchedReply, false);
+            }, 800);
+        }
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            addMessage(text, true);
+            chatInput.value = '';
+            handleBotReply(text);
+        });
+
+        quickPrompts.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const text = btn.textContent.trim();
+                addMessage(text, true);
+                handleBotReply(text);
+            });
+        });
+
+        resetChatBtn.addEventListener('click', () => {
+            chatMessages.innerHTML = `
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-400 flex-shrink-0 mt-1">
+                        <i data-lucide="bot" class="w-4 h-4"></i>
+                    </div>
+                    <div class="bg-slate-800/90 text-slate-200 p-4 rounded-2xl rounded-tl-none border border-slate-700/50 max-w-[85%] text-sm leading-relaxed">
+                        Bonjour ! 🖐️ Je suis l'assistant IA de <strong>ImmoPlus Abidjan</strong>. 
+                        Je peux vous informer sur nos appartements disponibles à Cocody & Marcory, nos tarifs, ou réserver une visite. Comment puis-je vous aider ?
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        });
+
+        // 4. Form Submission Mock
+        const bookingForm = document.getElementById('booking-form');
+        const formSuccessMsg = document.getElementById('form-success-msg');
+
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formSuccessMsg.classList.remove('hidden');
+            bookingForm.reset();
+            setTimeout(() => {
+                formSuccessMsg.classList.add('hidden');
+            }, 6000);
+        });
+    </script>
+</body>
+</html>
